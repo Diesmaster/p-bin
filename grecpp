@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Check if a name is provided
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <name-to-search-for> <path-to-search>"
+    exit 1
+fi
+
+# The name to search for
+name_to_search="$1"
+# The path to the source code
+path_to_search="$2"
+
+# Perform the grep search
+grep -n -r -E "(\w+\s+)+${name_to_search}\s*\([^)]*\)\s*{?|class\s+${name_to_search}|struct\s+${name_to_search}" "$path_to_search"
